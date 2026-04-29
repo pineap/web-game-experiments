@@ -7,7 +7,8 @@
   "scripts": {
     "start": "eleventy --serve",
     "build:game": "bun build src/game.ts --outdir docs/ --target browser",
-    "build": "bun run build:game && eleventy"
+    "build:gol": "bun build src/game-of-life/main.ts --outdir docs/game-of-life/ --target browser",
+    "build": "bun run build:game && bun run build:gol && cp src/game-of-life/index.html docs/game-of-life/index.html && eleventy"
   },
   "devDependencies": {
     "@11ty/eleventy": "latest",
