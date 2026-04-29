@@ -12,13 +12,19 @@
         <p class="subtitle">Welcome to the collection of my web-based game experiments.</p>
         
         <div class="game-grid">
-            {% for game in games %}
+            
             <div class="game-card">
-                <h2>{{ game.title }}</h2>
-                <p>{{ game.description }}</p>
-                <a href="{{ game.url }}" class="play-button">Play Game</a>
+                <h2>Hello World</h2>
+                <p>A simple greeting to test the system.</p>
+                <a href="hello-world/" class="play-button">Play Game</a>
             </div>
-            {% endfor %}
+            
+            <div class="game-card">
+                <h2>Conway's Tower Defense</h2>
+                <p>A strategy game based on cellular automata.</p>
+                <a href="conway-td/" class="play-button">Play Game</a>
+            </div>
+            
         </div>
 
         <div id="status">Status: Ready to Play</div>

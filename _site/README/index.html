@@ -1,0 +1,32 @@
+<h1>Web Game Experiments</h1>
+<p>A collection of lightweight, experimental web games built with HTML, CSS, and JavaScript.</p>
+<h2>Goal</h2>
+<p>To explore game mechanics, physics, and rendering techniques using minimal-dependency web technologies.</p>
+<h2>Project Structure</h2>
+<ul>
+<li><code>index.html</code>: The main entry point and dashboard for all experiments.</li>
+<li><code>style.css</code>: Global styles for the portal.</li>
+<li><code>script.js</code>: Global logic (if any).</li>
+<li><code>_data/games.json</code>: The &quot;database&quot; of all games in the collection.</li>
+<li><code>[experiment-name]/</code>: Individual game folders.</li>
+</ul>
+<h2>Deployment (GitHub Pages)</h2>
+<p>This project uses <strong>Eleventy (11ty)</strong> to generate the static site. Before pushing changes to GitHub, you must generate the production build.</p>
+<h3>1. Generate the Build</h3>
+<p>Run the build command to transform the templates and data into static HTML:</p>
+<pre><code class="language-bash">bunx @11ty/eleventy
+</code></pre>
+<p>This will create a <code>_site</code> directory containing the final, deployable website.</p>
+<h3>2. Deploy to GitHub</h3>
+<p>Since GitHub Pages needs to serve the contents of the <code>_site</code> folder, you should ensure your deployment process points to that directory.</p>
+<p><em>Tip: You can use a GitHub Action to automate this, or simply push the <code>_site</code> contents to a <code>gh-pages</code> branch.</em></p>
+<h2>Local Development</h2>
+<p>To run a local development server with live reloading:</p>
+<pre><code class="language-bash">bunx @11ty/eleventy --serve
+</code></pre>
+<p>Once running, visit <code>http://localhost:8080</code> in your browser.</p>
+<h2>Dependencies</h2>
+<ul>
+<li><a href="https://bun.sh/">Bun</a>: Fast JavaScript runtime and package manager.</li>
+<li><a href="https://www.11ty.dev/">Eleventy</a>: Simple and fast static site generator.</li>
+</ul>
