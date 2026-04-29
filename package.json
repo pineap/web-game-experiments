@@ -6,9 +6,15 @@
   "type": "module",
   "scripts": {
     "start": "eleventy --serve",
-    "build": "eleventy"
+    "build:game": "bun build src/game.ts --outdir docs/ --target browser",
+    "build": "bun run build:game && eleventy"
   },
   "devDependencies": {
-    "@11ty/eleventy": "latest"
+    "@11ty/eleventy": "latest",
+    "@types/node": "25.6.0",
+    "typescript": "6.0.3"
+  },
+  "dependencies": {
+    "pixi.js": "8.18.1"
   }
 }

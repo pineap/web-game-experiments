@@ -7,26 +7,27 @@ To explore game mechanics, physics, and rendering techniques using minimal-depen
 
 ## Project Structure
 - `index.html`: The main entry point and dashboard for all experiments.
-- `style.css`: Global styles for the portal.
-- `script.js`: Global logic (if any).
+- `style.css`: Global styles for the HTML dashboard.
 - `_data/games.json`: The "database" of all games in the collection.
-- `[experiment-name]/`: Individual game folders.
+- `src/`: The TypeScript source code for individual games.
+- `tsconfig.json`: TypeScript configuration.
+- `docs/`: The generated production-ready static site (served by GitHub Pages).
 
 ## Deployment (GitHub Pages)
 
-This project uses **Eleventy (11ty)** to generate the static site. Before pushing changes to GitHub, you must generate the production build.
+This project uses **Eleventy (11ty)** to generate the HTML dashboard and **Bun** to bundle the TypeScript game logic. All production files are generated directly into the `/docs` folder for GitHub Pages hosting.
 
 ### 1. Generate the Build
-Run the build command to transform the templates and data into static HTML:
+Run the build command to bundle the TypeScript games and generate the static HTML:
 ```bash
-bunx @11ty/eleventy
+bun run build
 ```
-This will create a `_site` directory containing the final, deployable website.
+This will:
+1. Run `bun build` to compile `src/game.ts` into `docs/game.js`.
+2. Run `eleventy` to generate the HTML and place it into the `docs/` directory.
 
-### 2. Deploy to GitHub
-Since GitHub Pages needs to serve the contents of the `_site` folder, you should ensure your deployment process points to that directory. 
+The `docs` folder is now ready to be pushed to GitHub.
 
-*Tip: You can use a GitHub Action to automate this, or simply push the `_site` contents to a `gh-pages` branch.*
 
 ## Local Development
 
