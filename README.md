@@ -8,8 +8,8 @@ To explore game mechanics, physics, and rendering techniques using minimal-depen
 ## How to Run
 Since this is a static site, you can:
 1. Open `index.html` directly in your browser.
-2. Use a local server like `npx serve` or `bunx serve`.
-3. View the hosted version on **GitHub Pages**.
+2. Use a local server like `bunx serve`.
+3. View the hosted version on [**GitHub Pages**](https://pineap.github.io/web-game-experiments/).
 
 ## Project Structure
 - `index.html`: The main entry point and dashboard for all experiments.
