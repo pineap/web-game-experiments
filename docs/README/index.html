@@ -1,35 +1,27 @@
 <h1>Web Game Experiments</h1>
-<p>A collection of lightweight, experimental web games built with HTML, CSS, and JavaScript.</p>
-<h2>Goal</h2>
-<p>To explore game mechanics, physics, and rendering techniques using minimal-dependency web technologies.</p>
+<p>A collection of lightweight, experimental web games.</p>
+<h2>Tech Stack</h2>
+<ul>
+<li><strong>Runtime &amp; Bundler</strong>: <a href="https://bun.sh/">Bun</a></li>
+<li><strong>Static Site Generator</strong>: <a href="https://www.11ty.dev/">Eleventy (11ty)</a></li>
+<li><strong>Rendering</strong>: <a href="https://pixijs.com/">PixiJS</a> (for some experiments)</li>
+<li><strong>Language</strong>: TypeScript</li>
+</ul>
 <h2>Project Structure</h2>
 <ul>
-<li><code>index.html</code>: The main entry point and dashboard for all experiments.</li>
-<li><code>style.css</code>: Global styles for the HTML dashboard.</li>
-<li><code>_data/games.json</code>: The &quot;database&quot; of all games in the collection.</li>
-<li><code>src/</code>: The TypeScript source code for individual games.</li>
-<li><code>tsconfig.json</code>: TypeScript configuration.</li>
+<li><code>index.html</code>: Main entry point / dashboard.</li>
+<li><code>src/</code>: TypeScript source code for individual games.</li>
 <li><code>docs/</code>: The generated production-ready static site (served by GitHub Pages).</li>
 </ul>
 <h2>Deployment (GitHub Pages)</h2>
-<p>This project uses <strong>Eleventy (11ty)</strong> to generate the HTML dashboard and <strong>Bun</strong> to bundle the TypeScript game logic. All production files are generated directly into the <code>/docs</code> folder for GitHub Pages hosting.</p>
+<p>This project generates all production files directly into the <code>/docs</code> folder.</p>
 <h3>1. Generate the Build</h3>
 <p>Run the build command to bundle the TypeScript games and generate the static HTML:</p>
 <pre><code class="language-bash">bun run build
 </code></pre>
-<p>This will:</p>
-<ol>
-<li>Run <code>bun build</code> to compile <code>src/game.ts</code> into <code>docs/game/game.js</code>.</li>
-<li>Run <code>eleventy</code> to generate the HTML and place it into the <code>docs/</code> directory.</li>
-</ol>
 <p>The <code>docs</code> folder is now ready to be pushed to GitHub.</p>
 <h2>Local Development</h2>
-<p>To run a local development server with live reloading:</p>
-<pre><code class="language-bash">bunx @11ty/eleventy --serve
+<p>To run a local development server:</p>
+<pre><code class="language-bash">bun run start&amp;build
 </code></pre>
 <p>Once running, visit <code>http://localhost:8080</code> in your browser.</p>
-<h2>Dependencies</h2>
-<ul>
-<li><a href="https://bun.sh/">Bun</a>: Fast JavaScript runtime and package manager.</li>
-<li><a href="https://www.11ty.dev/">Eleventy</a>: Simple and fast static site generator.</li>
-</ul>
