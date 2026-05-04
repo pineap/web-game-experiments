@@ -1,11 +1,11 @@
 <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Web Game Experiments</title>
     <link rel="stylesheet" href="style.css">
-    <script src="game.js" type="module"></script>
 </head>
 <body class="home-body">
     <div id="game-container">
@@ -24,62 +24,5 @@
 
         <div id="status">Status: Ready to Play</div>
     </div>
-
-    <style>
-        .home-body {
-            background-color: #222;
-            color: #eee;
-            font-family: sans-serif;
-            margin: 0;
-            padding: 40px 20px;
-            display: flex;
-            justify-content: center;
-        }
-        #game-container {
-            max-width: 800px;
-            width: 100%;
-            text-align: center;
-        }
-        .main-title { margin-bottom: 0.5rem; }
-        .subtitle { margin-bottom: 2rem; color: #aaa; }
-        
-        .game-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 2em;
-        }
-        .game-card {
-            background-color: #333;
-            border: 1px solid #444;
-            padding: 1.5rem;
-            border-radius: 12px;
-            transition: transform 0.2s, border-color 0.2s;
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-        }
-        .game-template-card:hover {
-            transform: translateY(-8px);
-            border-color: #0f0;
-        }
-        .game-card h2 { margin-top: 0; color: #fff; }
-        .game-card p { color: #ccc; font-size: 0.9rem; }
-        
-        .play-button {
-            display: inline-block;
-            margin-top: 1rem;
-            padding: 12px 24px;
-            background-color: #0f0;
-            color: #000;
-            text-decoration: none;
-            font-weight: bold;
-            border-radius: 6px;
-        }
-        #status {
-            margin-top: 3rem;
-            font-size: 0.8rem;
-            color: #666;
-        }
-    </style>
 </body>
 </html>

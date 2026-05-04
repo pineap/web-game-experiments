@@ -23,7 +23,7 @@ Run the build command to bundle the TypeScript games and generate the static HTM
 bun run build
 ```
 This will:
-1. Run `bun build` to compile `src/game.ts` into `docs/game.js`.
+1. Run `bun build` to compile `src/game.ts` into `docs/game/game.js`.
 2. Run `eleventy` to generate the HTML and place it into the `docs/` directory.
 
 The `docs` folder is now ready to be pushed to GitHub.
