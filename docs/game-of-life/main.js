@@ -4,6 +4,9 @@ class GameOfLifeEngine {
   grid_size;
   player_area_size;
   generation = 0;
+  generation_ms = 1000;
+  max_gen_period = 8000;
+  min_gen_period = 125;
   budget = 0;
   game_over = false;
   isPaused = false;
@@ -70,7 +73,7 @@ class GameOfLifeEngine {
     }
     this.grid = nextGrid;
     this.generation++;
-    this.budget += 0.1;
+    this.budget += 0.25;
     this.checkGameOver();
   }
   countNeighbors(r, c) {
@@ -172,7 +175,8 @@ class GameRenderer {
     ctx.fillStyle = this.text_color;
     ctx.font = "16px Arial";
     ctx.fillText(`Gen: ${engine.generation}`, ui_x, 30);
-    ctx.fillText(`Budget: ${Math.floor(engine.budget)}`, ui_x, 60);
+    ctx.fillText(`Gen ms: ${engine.generation_ms}`, ui_x, 60);
+    ctx.fillText(`Budget: ${Math.floor(engine.budget)}`, ui_x, 90);
     if (engine.game_over) {
       ctx.fillStyle = "#ff0000";
       ctx.font = "bold 24px Arial";
@@ -220,6 +224,12 @@ class InputHandler {
         case "KeyR":
           this.engine.setupGame(0.3);
           break;
+        case "KeyD":
+          this.engine.generation_ms = Math.min(this.engine.generation_ms * 2, this.engine.max_gen_period);
+          break;
+        case "KeyA":
+          this.engine.generation_ms = Math.max(this.engine.generation_ms / 2, this.engine.min_gen_period);
+          break;
       }
     });
   }
@@ -227,7 +237,7 @@ class InputHandler {
 
 // src/game-of-life/main.ts
 var GRID_SIZE = 50;
-var CELL_SIZE = 10;
+var CELL_SIZE = 20;
 var UI_WIDTH = 200;
 function main() {
   const canvas = document.getElementById("gameCanvas");
@@ -237,15 +247,13 @@ function main() {
   const renderer = new GameRenderer(canvas, GRID_SIZE, CELL_SIZE, UI_WIDTH);
   new InputHandler(engine, renderer, canvas, CELL_SIZE);
   let lastTime = 0;
-  let fps = 0;
   function loop(timestamp) {
     const deltaTime = timestamp - lastTime;
-    if (deltaTime > 0) {
-      fps = 1000 / deltaTime;
+    if (deltaTime > engine.generation_ms) {
+      engine.update();
+      lastTime = timestamp;
     }
-    lastTime = timestamp;
-    engine.update();
-    renderer.draw(engine, fps);
+    renderer.draw(engine, 60);
     requestAnimationFrame(loop);
   }
   requestAnimationFrame(loop);

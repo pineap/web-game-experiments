@@ -4,7 +4,7 @@ import { GameRenderer } from './renderer/GameRenderer';
 import { InputHandler } from './input/InputHandler';
 
 const GRID_SIZE = 50;
-const CELL_SIZE = 10;
+const CELL_SIZE = 20;
 const UI_WIDTH = 200;
 
 function main() {
@@ -16,17 +16,15 @@ function main() {
     new InputHandler(engine, renderer, canvas, CELL_SIZE);
 
     let lastTime = 0;
-    let fps = 0;
 
     function loop(timestamp: number) {
         const deltaTime = timestamp - lastTime;
-        if (deltaTime > 0) {
-            fps = 1000 / deltaTime;
+        if (deltaTime > engine.generation_ms) {
+            engine.update();
+            lastTime = timestamp;
         }
-        lastTime = timestamp;
-
-        engine.update();
-        renderer.draw(engine, fps);
+        
+        renderer.draw(engine, 60);
 
         requestAnimationFrame(loop);
     }

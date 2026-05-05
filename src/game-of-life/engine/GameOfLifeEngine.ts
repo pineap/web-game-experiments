@@ -3,6 +3,9 @@ export class GameOfLifeEngine {
     public grid_size: number;
     public player_area_size: number;
     public generation: number = 0;
+    public generation_ms: number = 1000;
+    public max_gen_period: number = 8000;
+    public min_gen_period: number = 125;
     public budget: number = 0;
     public game_over: boolean = false;
     public isPaused: boolean = false;
@@ -86,7 +89,7 @@ export class GameOfLifeEngine {
 
         this.grid = nextGrid;
         this.generation++;
-        this.budget += 0.1; // Regenerate budget slowly
+        this.budget += 0.25; // Regenerate budget slowly
 
         this.checkGameOver();
     }

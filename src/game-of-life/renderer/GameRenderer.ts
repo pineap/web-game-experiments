@@ -1,3 +1,5 @@
+import { GameOfLifeEngine } from "../engine/GameOfLifeEngine";
+
 export class GameRenderer {
     private ctx: CanvasRenderingContext2D;
     private canvas: HTMLCanvasElement;
@@ -23,7 +25,7 @@ export class GameRenderer {
         this.canvas.height = this.grid_area_size;
     }
 
-    public draw(engine: any, fps: number) {
+    public draw(engine: GameOfLifeEngine, fps: number) {
         const { ctx, canvas, grid_size, cell_size, ui_width, grid_area_size } = this;
         
         ctx.fillStyle = this.bg_color;
@@ -75,7 +77,8 @@ export class GameRenderer {
         ctx.fillStyle = this.text_color;
         ctx.font = "16px Arial";
         ctx.fillText(`Gen: ${engine.generation}`, ui_x, 30);
-        ctx.fillText(`Budget: ${Math.floor(engine.budget)}`, ui_x, 60);
+        ctx.fillText(`Gen ms: ${engine.generation_ms}`, ui_x, 60);
+        ctx.fillText(`Budget: ${Math.floor(engine.budget)}`, ui_x, 90);
         
         if (engine.game_over) {
             ctx.fillStyle = "#ff0000";

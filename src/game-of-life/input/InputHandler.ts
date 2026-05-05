@@ -1,7 +1,10 @@
+import { GameOfLifeEngine } from "../engine/GameOfLifeEngine";
+import { GameRenderer } from "../renderer/GameRenderer";
+
 export class InputHandler {
     constructor(
-        private engine: any,
-        private renderer: any,
+        private engine: GameOfLifeEngine,
+        private renderer: GameRenderer,
         private canvas: HTMLCanvasableElement,
         private cell_size: number
     ) {
@@ -23,6 +26,12 @@ export class InputHandler {
                     break;
                 case 'KeyR':
                     this.engine.setupGame(0.3);
+                    break;
+                case 'KeyD':
+                    this.engine.generation_ms = Math.min(this.engine.generation_ms * 2, this.engine.max_gen_period);
+                    break;
+                case 'KeyA':
+                    this.engine.generation_ms = Math.max(this.engine.generation_ms / 2, this.engine.min_gen_period);
                     break;
             }
         });

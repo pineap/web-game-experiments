@@ -6,7 +6,7 @@
   "type": "module",
   "scripts": {
     "start": "eleventy --serve",
-    "start&build": "bun run build && eleventy --serve",
+    "start:build": "bun run build && eleventy --serve",
     "build:gol": "bun build src/game-of-life/main.ts --outdir docs/game-of-life/ --target browser",
     "build": "bun run build:gol && cp src/game-of-life/index.html docs/game-of-life/index.html && cp style.css docs/ && eleventy"
   },
