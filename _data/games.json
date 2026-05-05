@@ -5,9 +5,9 @@
     "url": "README/"
   },
   {
-    "title": "Conway's Tower Defense",
-    "description": "A strategy game based on cellular automata.",
-    "url": "conway-td/"
+    "title": "Kotlin Wasm Board games",
+    "description": "Interview demonstrations still served from a work context",
+    "url": "https://wasm-demo-frontend.cfapps.eu12.hana.ondemand.com/#"
   },
   {
     "title": "Game of Life (Survival)",
