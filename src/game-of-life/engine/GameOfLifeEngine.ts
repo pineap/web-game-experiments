@@ -120,7 +120,7 @@ export class GameOfLifeEngine {
         const c = Math.floor(x / cellSize);
         const r = Math.floor(y / cellSize);
         
-        if (r >= 0 && r < this.grid_size && c >= 0 && c < this.grid_size) {
+        if (r >= this.player_bounds[0] && r < this.player_bounds[1] && c >= this.player_bounds[0] && c < this.player_bounds[1]) {
             if (this.budget >= 1 && !this.grid[r][c]) {
                 this.grid[r][c] = true;
                 this.budget -= 1;
