@@ -9,6 +9,7 @@ class GameOfLifeEngine {
   min_gen_period = 125;
   budget = 0;
   game_over = false;
+  won = false;
   isPaused = false;
   core_cells = [];
   player_bounds = [0, 0];
@@ -43,6 +44,7 @@ class GameOfLifeEngine {
     this.generation = 0;
     this.budget = 10;
     this.game_over = false;
+    this.won = false;
   }
   randomize(probability) {
     for (let r = 0;r < this.grid_size; r++) {
@@ -112,8 +114,27 @@ class GameOfLifeEngine {
     for (const [r, c] of this.core_cells) {
       if (!this.grid[r][c]) {
         this.game_over = true;
+        this.won = false;
         return;
       }
+    }
+    let otherCellsAlive = false;
+    for (let r = 0;r < this.grid_size; r++) {
+      for (let c = 0;c < this.grid_size; c++) {
+        if (this.grid[r][c]) {
+          const isCore = this.core_cells.some(([cr, cc]) => cr === r && cc === c);
+          if (!isCore) {
+            otherCellsAlive = true;
+            break;
+          }
+        }
+      }
+      if (otherCellsAlive)
+        break;
+    }
+    if (!otherCellsAlive) {
+      this.game_over = true;
+      this.won = true;
     }
   }
 }
@@ -178,9 +199,14 @@ class GameRenderer {
     ctx.fillText(`Gen ms: ${engine.generation_ms}`, ui_x, 60);
     ctx.fillText(`Budget: ${Math.floor(engine.budget)}`, ui_x, 90);
     if (engine.game_over) {
-      ctx.fillStyle = "#ff0000";
       ctx.font = "bold 24px Arial";
-      ctx.fillText("GAME OVER", ui_x, 120);
+      if (engine.won) {
+        ctx.fillStyle = "#00ff00";
+        ctx.fillText("VICTORY!", ui_x, 120);
+      } else {
+        ctx.fillStyle = "#ff0000";
+        ctx.fillText("GAME OVER", ui_x, 120);
+      }
     }
     ctx.fillStyle = this.text_color;
     ctx.font = "12px Arial";
@@ -188,7 +214,11 @@ class GameRenderer {
       "Controls:",
       "Space: Toggle Pause",
       "R: Reset",
-      "Mouse: Place Cell (Costs 1)"
+      "A/D: Adjust Speed",
+      "Mouse: Place Cell (Costs 1)",
+      "",
+      "Goal: Clear all cells",
+      "except the core 4!"
     ];
     controls.forEach((text, i) => {
       ctx.fillText(text, ui_x, 180 + i * 20);
