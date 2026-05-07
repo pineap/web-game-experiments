@@ -81,9 +81,14 @@ export class GameRenderer {
         ctx.fillText(`Budget: ${Math.floor(engine.budget)}`, ui_x, 90);
         
         if (engine.game_over) {
-            ctx.fillStyle = "#ff0000";
             ctx.font = "bold 24px Arial";
-            ctx.fillText("GAME OVER", ui_x, 120);
+            if (engine.won) {
+                ctx.fillStyle = "#00ff00";
+                ctx.fillText("VICTORY!", ui_x, 120);
+            } else {
+                ctx.fillStyle = "#ff0000";
+                ctx.fillText("GAME OVER", ui_x, 120);
+            }
         }
 
         ctx.fillStyle = this.text_color;
@@ -92,7 +97,11 @@ export class GameRenderer {
             "Controls:",
             "Space: Toggle Pause",
             "R: Reset",
+            "A/D: Adjust Speed",
             "Mouse: Place Cell (Costs 1)",
+            "",
+            "Goal: Clear all cells",
+            "except the core 4!",
         ];
         controls.forEach((text, i) => {
             ctx.fillText(text, ui_x, 180 + (i * 20));

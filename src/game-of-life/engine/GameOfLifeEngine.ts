@@ -8,6 +8,7 @@ export class GameOfLifeEngine {
     public min_gen_period: number = 125;
     public budget: number = 0;
     public game_over: boolean = false;
+    public won: boolean = false;
     public isPaused: boolean = false;
     public core_cells: [number, number][] = [];
     public player_bounds: [number, number] = [0, 0];
@@ -54,6 +55,7 @@ export class GameOfLifeEngine {
         this.generation = 0;
         this.budget = 10;
         this.game_over = false;
+        this.won = false;
     }
 
     private randomize(probability: number) {
@@ -129,12 +131,34 @@ export class GameOfLifeEngine {
     }
 
     private checkGameOver() {
-        // If a core cell dies
+        // If a core cell dies -> Loss
         for (const [r, c] of this.core_cells) {
             if (!this.grid[r][c]) {
                 this.game_over = true;
+                this.won = false;
                 return;
             }
+        }
+
+        // If no other living cells exist aside from core cells -> Win
+        let otherCellsAlive = false;
+        for (let r = 0; r < this.grid_size; r++) {
+            for (let c = 0; c < this.grid_size; c++) {
+                if (this.grid[r][c]) {
+                    // Check if this cell is NOT a core cell
+                    const isCore = this.core_cells.some(([cr, cc]) => cr === r && cc === c);
+                    if (!isCore) {
+                        otherCellsAlive = true;
+                        break;
+                    }
+                }
+            }
+            if (otherCellsAlive) break;
+        }
+
+        if (!otherCellsAlive) {
+            this.game_over = true;
+            this.won = true;
         }
     }
 }
